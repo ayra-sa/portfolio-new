@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* :root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+} */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-[#F3F4FA];
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-bold;
+  }
+}
+
+@layer components {
+  .love {
+    display: block;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    border-radius: 999px;
+    overflow: visible;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .heart {
+    background-image: url("https://assets.codepen.io/23500/Hashflag-AppleEvent.svg");
+    background-size: calc(100px * 62) 100px;
+    background-repeat: no-repeat;
+    background-position-x: calc(100px * (62 * -1 + 2));
+    background-position-y: calc(100px * 0.02);
+    width: 100px;
+    height: 100px;
+  }
+
+  @keyframes like {
+    0% {
+      background-position-x: 0;
+    }
+    100% {
+      background-position-x: calc(100px * (62 * -1 + 3));
+    }
+  }
+
+  input[type="checkbox"].check-love {
+    display: none;
+  }
+
+  input[type="checkbox"].check-love:checked + .heart {
+    animation: like 1s steps(calc(62 - 3));
+    animation-fill-mode: forwards;
+  }
+
+  .read-more {
+    text-decoration: none;
+    position: relative;
+    z-index: 0;
+    display: inline-block;
+    padding: 5px 5px;
+    overflow: hidden;
+    color: #0b0d12;
+    vertical-align: bottom;
+    transition: color 0.3s ease-out;
+    font-size: 1.5em;
+  }
+  .read-more::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    transform: translateY(calc(100% - 2px));
+    width: 100%;
+    height: 100%;
+    background-color: #2d1fbe;
+    transition: transform 0.25s ease-out;
+  }
+  
+  .read-more:hover {
+    color: #fff;
+  }
+
+  .read-more:hover::before {
+    transform: translateY(0);
+    /* transition: transform 0.25s ease-out; */
+  }
+
+  .label {
+    @apply uppercase tracking-widest text-lg mb-2 font-medium
+  }
+}
