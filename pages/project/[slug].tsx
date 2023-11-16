@@ -20,16 +20,12 @@ type ParamsProps = {
   };
 };
 
+export const revalidate = 30
+
 const ProjectDetail = ({ project }: Props) => {
-  console.log(project);
   const router = useRouter();
   const { slug } = router.query;
 
-  //   React.useEffect(() => {
-  //     if (!router.isReady) return;
-  //     console.log(item);
-  //     setDataItem(item);
-  //   }, [title, router.isReady]);
   return (
     <div>
       <Head>
@@ -63,7 +59,7 @@ const ProjectDetail = ({ project }: Props) => {
 
               <div>
                 <p className="label">demo</p>
-                <Link href={project.demo} className="underline flex gap-x-2 items-center">
+                <Link target="_blank" href={project.demo} className="underline flex gap-x-2 items-center">
                   <span>Visit Live Site Here</span>
                   <span><ArrowTopRightOnSquareIcon className="w-4 h-4" /></span>
                 </Link>
