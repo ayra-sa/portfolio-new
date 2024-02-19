@@ -44,7 +44,7 @@ const Home: React.FC<HomeProps> = ({ heroData, aboutData, techData, projectsData
 
 export default Home;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const welcomeQuery = groq`*[_type == "welcome"]{
     _id,
     image,
