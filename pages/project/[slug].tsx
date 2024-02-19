@@ -24,7 +24,7 @@ export const revalidate = 30
 
 const ProjectDetail = ({ project }: Props) => {
   const router = useRouter();
-  const { slug } = router.query;
+  // const { slug } = router.query;
 
   return (
     <div>
@@ -95,26 +95,26 @@ const ProjectDetail = ({ project }: Props) => {
 
 export default ProjectDetail;
 
-export const getStaticPaths = async () => {
-  const query = groq`*[_type=='projects']{
-          slug
-      }`;
+// export const getStaticPaths = async () => {
+//   const query = groq`*[_type=='projects']{
+//           slug
+//       }`;
 
-  const projects = await client.fetch(query);
+//   const projects = await client.fetch(query);
 
-  const paths = projects.map((project: Project) => {
-    return {
-      params: { slug: project.slug.current },
-    };
-  });
+//   const paths = projects.map((project: Project) => {
+//     return {
+//       params: { slug: project.slug.current },
+//     };
+//   });
 
-  return {
-    paths,
-    fallback: "blocking",
-  };
-};
+//   return {
+//     paths,
+//     fallback: "blocking",
+//   };
+// };
 
-export const getStaticProps = async ({ params: { slug } }: ParamsProps) => {
+export const getServerSideProps = async ({ params: { slug } }: ParamsProps) => {
   const query = groq`*[_type=='projects' && slug.current == '${slug}'][0]`;
 
   const project = await client.fetch(query);
